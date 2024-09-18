@@ -39,6 +39,9 @@ const Employees = () => {
       <h2 className="text-2xl font-semibold bg-yellow-300 mb-5 sm:mb-10 px-5 py-2">
         Employee List
       </h2>
+      <Link to="/employees/create">
+        <Button className="ml-5">Add</Button>
+      </Link>
       <div className="flex flex-col items-center justify-center gap-5 px-5">
         {employees.length > 0 ? (
           <Table>
@@ -95,7 +98,12 @@ const Employees = () => {
             </TableBody>
           </Table>
         ) : (
-          <h2 className="text-xl mt-5">No Employees Found</h2>
+          <>
+            <h2 className="text-xl mt-5">No Employees Found</h2>
+            <Link className="mx-auto" to="/employees/create">
+              <Button className="w-full">Add</Button>
+            </Link>
+          </>
         )}
       </div>
     </div>

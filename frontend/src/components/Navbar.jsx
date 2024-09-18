@@ -1,3 +1,4 @@
+import { useLocation, Link } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -5,30 +6,42 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
+  const location = useLocation();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     window.location.reload();
   };
 
+  const isActive = (path) => location.pathname === path;
+
   return (
     <div className="flex justify-between">
       <NavigationMenu>
         <NavigationMenuList>
+          <img src="/logo.webp" alt="logo" className="w-10 h-10" />
           <NavigationMenuItem>
             <Link to="/" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} ${
+                  isActive("/") ? "bg-yellow-300 rounded-none" : ""
+                }`}
+              >
                 Home
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link to="/employees" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} ${
+                  isActive("/employees") ? "bg-yellow-300 rounded-none" : ""
+                }`}
+              >
                 Employee List
               </NavigationMenuLink>
             </Link>

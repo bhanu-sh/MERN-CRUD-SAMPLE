@@ -13,13 +13,24 @@ function App() {
     <div className="h-screen">
       <Navbar />
       <Routes>
-        {user && <Route path="/" exact element={<HomePage />} />}
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/login" exact element={<Login />} />
-        <Route path="/employees" exact element={<Employees />} />
-        <Route path="/employees/create" exact element={<AddEmployee />} />
-        <Route path="/employees/edit/:id" exact element={<EditEmployee />} />
+        {user && (
+          <>
+            <Route path="/" exact element={<HomePage />} />
+            <Route path="/employees" exact element={<Employees />} />
+            <Route path="/employees/create" exact element={<AddEmployee />} />
+            <Route
+              path="/employees/edit/:id"
+              exact
+              element={<EditEmployee />}
+            />
+          </>
+        )}
         <Route path="/" exact element={<Navigate replace to="/login" />} />
+        <Route path="/employees" element={<Navigate replace to="/login" />} />
+        <Route path="/employees/create" element={<Navigate replace to="/login" />} />
+        <Route path="/employees/edit/:id" element={<Navigate replace to="/login" />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </div>

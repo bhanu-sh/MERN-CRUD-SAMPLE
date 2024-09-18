@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -19,12 +20,23 @@ const Employees = () => {
     setEmployees(data.data);
   };
 
+  const deleteEmployee = async (id) => {
+    try {
+      const url = "http://localhost:5000/api/employees/" + id;
+      const { data: res } = await axios.delete(url);
+      console.log(res.message);
+      fetchEmployees();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchEmployees();
   }, []);
   return (
     <div className="flex flex-col">
-      <h2 className="text-2xl bg-yellow-300 mb-5 sm:mb-10 px-5 py-2">
+      <h2 className="text-2xl font-semibold bg-yellow-300 mb-5 sm:mb-10 px-5 py-2">
         Employee List
       </h2>
       <div className="flex flex-col items-center justify-center gap-5 px-5">
@@ -69,7 +81,11 @@ const Employees = () => {
                           Edit
                         </Button>
                       </Link>
-                      <Button variant={"link"} className="text-red-500">
+                      <Button
+                        onClick={() => deleteEmployee(employee._id)}
+                        variant={"link"}
+                        className="text-red-500"
+                      >
                         Delete
                       </Button>
                     </div>

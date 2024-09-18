@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
@@ -71,7 +72,7 @@ const EditEmployee = () => {
 
   useEffect(() => {
     fetchEmployee();
-  }, []);
+  }, [id]);
 
   return (
     <div className="flex flex-col gap-2 justify-center">

@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import CreatePage from "./pages/CreatePage";
 import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -15,7 +14,6 @@ function App() {
       <Navbar />
       <Routes>
         {user && <Route path="/" exact element={<HomePage />} />}
-        <Route path="/create" exact element={<CreatePage />} />
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/employees" exact element={<Employees />} />

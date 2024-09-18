@@ -15,14 +15,14 @@ const Employees = () => {
   const [employees, setEmployees] = useState([]);
 
   const fetchEmployees = async () => {
-    const res = await fetch("http://localhost:5000/api/employees");
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/employees`);
     const data = await res.json();
     setEmployees(data.data);
   };
 
   const deleteEmployee = async (id) => {
     try {
-      const url = "http://localhost:5000/api/employees/" + id;
+      const url = `${import.meta.env.VITE_BACKEND_URL}/api/employees/${id}`;
       const { data: res } = await axios.delete(url);
       console.log(res.message);
       fetchEmployees();

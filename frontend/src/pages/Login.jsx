@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 
@@ -20,7 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:5000/api/auth";
+      const url = `${import.meta.env.VITE_BACKEND_URL}/api/auth`;
       const { data: res } = await axios.post(url, user); 
       localStorage.setItem("token", res.data);
       localStorage.setItem("username", user.username);

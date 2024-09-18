@@ -24,7 +24,7 @@ const EditEmployee = () => {
   const navigate = useNavigate();
 
   const fetchEmployee = async () => {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/employees/${id}`);
+    const res = await fetch(`/api/employees/${id}`);
     const data = await res.json();
     setEmployee({
       name: data.data.name,
@@ -55,7 +55,7 @@ const EditEmployee = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${import.meta.env.VITE_BACKEND_URL}/api/employees/${id}`;
+      const url = `/api/employees/${id}`;
       const { data: res } = await axios.put(url, employee);
       console.log(res.message);
       navigate("/employees");

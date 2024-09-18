@@ -18,7 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${import.meta.env.VITE_BACKEND_URL}/api/auth`;
+      const url = `/api/auth`;
       const { data: res } = await axios.post(url, user); 
       localStorage.setItem("token", res.data);
       localStorage.setItem("username", user.username);

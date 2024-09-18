@@ -14,7 +14,7 @@ const HomePage = () => {
   const [employees, setEmployees] = useState([]);
 
   const fetchEmployees = async () => {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/employees`);
+    const res = await fetch(`/api/employees`);
     const data = await res.json();
     setEmployees(data.data);
   };

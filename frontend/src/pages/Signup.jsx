@@ -22,7 +22,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${import.meta.env.VITE_BACKEND_URL}/api/users`;
+      const url = `/api/users`;
       const { user: res } = await axios.post(url, user);
       console.log(res.message);
       navigate("/login");

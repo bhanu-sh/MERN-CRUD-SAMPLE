@@ -17,14 +17,25 @@ const Employees = () => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   const fetchEmployees = async () => {
-    const res = await fetch(`/api/employees`);
+    let url;
+    if (import.meta.env.PROD) {
+      url = "/api/auth";
+    } else {
+      url = `http://localhost:5000/api/employees`;
+    }
+    const res = await fetch(url);
     const data = await res.json();
     setEmployees(data.data);
   };
 
   const deleteEmployee = async (id) => {
     try {
-      const url = `/api/employees/${id}`;
+      let url;
+      if (import.meta.env.PROD) {
+        url = "/api/auth";
+      } else {
+        url = `http://localhost:5000/api/employees/${id}`;
+      }
       const { data: res } = await axios.delete(url);
       console.log(res.message);
       fetchEmployees();

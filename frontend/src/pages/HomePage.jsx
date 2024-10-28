@@ -14,7 +14,13 @@ const HomePage = () => {
   const [employees, setEmployees] = useState([]);
 
   const fetchEmployees = async () => {
-    const res = await fetch(`/api/employees`);
+    let url;
+    if (import.meta.env.PROD) {
+      url = "/api/auth";
+    } else {
+      url = "http://localhost:5000/api/employees";
+    }
+    const res = await fetch(url);
     const data = await res.json();
     setEmployees(data.data);
   };

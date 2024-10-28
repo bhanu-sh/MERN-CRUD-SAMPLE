@@ -23,7 +23,7 @@ const Navbar = () => {
     <div className="flex justify-between">
       <NavigationMenu>
         <NavigationMenuList>
-          <img src="/logo.webp" alt="logo" className="w-10 h-10" />
+          {/* <img src="/logo.png" alt="logo" className="w-10 h-10" /> */}
           <NavigationMenuItem>
             <Link to="/" legacyBehavior passHref>
               <NavigationMenuLink

@@ -37,7 +37,12 @@ const AddEmployee = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `/api/employees`;
+      let url;
+      if (import.meta.env.PROD) {
+        url = "/api/auth";
+      } else {
+        url = `http://localhost:5000/api/api/employees`;
+      }
       const { data: res } = await axios.post(url, employee);
       console.log(res.message);
       navigate("/employees");

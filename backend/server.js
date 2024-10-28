@@ -26,10 +26,9 @@ const __dirname = path.resolve();
 
 app.use(express.json({ limit: "10mb" })); //allows to accept json in req.body
 
-//auth middleware but exclude auth and user routes
+//auth middleware for api routes only
 app.use("/api/auth", authRoutes);
-app.use(authMiddleware);
-
+app.use("/api", authMiddleware);
 app.use("/api/users", userRoutes);
 app.use("/api/employees", employeeRoutes);
 

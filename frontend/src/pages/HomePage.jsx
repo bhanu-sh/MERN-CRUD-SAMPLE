@@ -20,7 +20,11 @@ const HomePage = () => {
     } else {
       url = "http://localhost:5000/api/employees";
     }
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    });
     const data = await res.json();
     setEmployees(data.data);
   };

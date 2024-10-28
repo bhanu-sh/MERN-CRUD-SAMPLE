@@ -30,7 +30,11 @@ const EditEmployee = () => {
     } else {
       url = `http://localhost:5000/api/employees/${id}`;
     }
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    });
     const data = await res.json();
     setEmployee({
       name: data.data.name,
@@ -67,7 +71,11 @@ const EditEmployee = () => {
       } else {
         url = `http://localhost:5000/api/employees/${id}`;
       }
-      const { data: res } = await axios.put(url, employee);
+      const { data: res } = await axios.put(url, employee, {
+        headers: {
+          "x-auth-token": localStorage.getItem("token"),
+        },
+      });
       console.log(res.message);
       navigate("/employees");
     } catch (error) {

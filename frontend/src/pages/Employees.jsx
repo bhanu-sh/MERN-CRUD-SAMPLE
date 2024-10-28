@@ -23,7 +23,11 @@ const Employees = () => {
     } else {
       url = `http://localhost:5000/api/employees`;
     }
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    });
     const data = await res.json();
     setEmployees(data.data);
   };
@@ -36,7 +40,11 @@ const Employees = () => {
       } else {
         url = `http://localhost:5000/api/employees/${id}`;
       }
-      const { data: res } = await axios.delete(url);
+      const { data: res } = await axios.delete(url, {
+        headers: {
+          "x-auth-token": localStorage.getItem("token"),
+        },
+      });
       console.log(res.message);
       fetchEmployees();
     } catch (error) {

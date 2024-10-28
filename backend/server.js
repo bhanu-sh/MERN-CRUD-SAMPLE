@@ -8,6 +8,7 @@ import { connectDB } from "./config/db.js";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import employeeRoutes from "./routes/employee.route.js";
+import authMiddleware from "./middleware/auth.middleware.js";
 
 dotenv.config();
 
@@ -25,8 +26,11 @@ const __dirname = path.resolve();
 
 app.use(express.json({ limit: "10mb" })); //allows to accept json in req.body
 
-app.use("/api/users", userRoutes);
+//auth middleware but exclude auth and user routes
 app.use("/api/auth", authRoutes);
+app.use(authMiddleware);
+
+app.use("/api/users", userRoutes);
 app.use("/api/employees", employeeRoutes);
 
 if (process.env.NODE_ENV === "production") {

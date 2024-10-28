@@ -43,7 +43,11 @@ const AddEmployee = () => {
       } else {
         url = `http://localhost:5000/api/api/employees`;
       }
-      const { data: res } = await axios.post(url, employee);
+      const { data: res } = await axios.post(url, employee, {
+        headers: {
+          "x-auth-token": localStorage.getItem("token"),
+        },
+      });
       console.log(res.message);
       navigate("/employees");
     } catch (error) {

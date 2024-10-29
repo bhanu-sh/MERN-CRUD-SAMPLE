@@ -41,7 +41,7 @@ const AddEmployee = () => {
       if (import.meta.env.PROD) {
         url = "/api/auth";
       } else {
-        url = `http://localhost:5000/api/api/employees`;
+        url = `http://localhost:5000/api/employees`;
       }
       const { data: res } = await axios.post(url, employee, {
         headers: {
